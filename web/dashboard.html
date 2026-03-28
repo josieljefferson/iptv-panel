@@ -16,7 +16,7 @@
             </div>
             <div class="nav-links">
                 <span id="userGreeting" class="user-greeting"></span>
-                <button id="logoutBtn" class="btn-logout">Sair</button>
+                <button id="logoutBtn" class="btn-logout" data-tooltip="Sair da conta">Sair</button>
             </div>
         </div>
     </nav>
@@ -26,135 +26,114 @@
             <div class="dashboard-header">
                 <h1>Minha Playlist IPTV</h1>
                 <p>Acesse sua lista de canais nos players compatíveis</p>
+                <div class="status-badge online" id="apiStatus">API Online</div>
             </div>
 
             <div class="playlist-info">
                 <div class="info-card">
-                    <h3>URL da Playlist</h3>
+                    <h3>📺 URL da Playlist M3U</h3>
                     <div class="url-container">
                         <input type="text" id="playlistUrl" readonly>
-                        <button id="copyUrlBtn" class="btn-copy">Copiar</button>
+                        <button id="copyUrlBtn" class="btn-copy" data-tooltip="Copiar URL">Copiar</button>
                     </div>
-                    <p class="info-text">Use esta URL no seu player IPTV (VLC, Kodi, Smart TV, etc)</p>
+                    <p class="info-text">Use esta URL no VLC, Kodi, IPTV Smarters e outros players compatíveis</p>
                 </div>
 
                 <div class="info-card">
-                    <h3>API Compatível</h3>
+                    <h3>🔗 API Compatível (Legado)</h3>
                     <div class="url-container">
                         <input type="text" id="apiUrl" readonly>
-                        <button id="copyApiBtn" class="btn-copy">Copiar</button>
+                        <button id="copyApiBtn" class="btn-copy" data-tooltip="Copiar URL">Copiar</button>
                     </div>
-                    <p class="info-text">Para players que usam o formato antigo de API</p>
+                    <p class="info-text">Para players que usam o formato antigo de API (get.php)</p>
+                    <small class="form-text">⚠️ Substitua ******** pela sua senha</small>
                 </div>
             </div>
 
             <div class="players-section">
-                <h2>Como Configurar</h2>
+                <h2>Como Configurar nos Principais Players</h2>
                 <div class="players-grid">
                     <div class="player-card">
-                        <div class="player-icon">📺</div>
+                        <div class="player-icon">💻</div>
                         <h3>VLC Media Player</h3>
                         <ol>
-                            <li>Abra o VLC</li>
+                            <li>Abra o VLC Media Player</li>
                             <li>Clique em "Mídia" → "Abrir URL de Rede"</li>
-                            <li>Cole a URL acima</li>
+                            <li>Cole a URL da playlist acima</li>
                             <li>Clique em "Reproduzir"</li>
+                            <li>Os canais aparecerão na lista de reprodução</li>
                         </ol>
                     </div>
                     <div class="player-card">
                         <div class="player-icon">📱</div>
                         <h3>IPTV Smarters Pro</h3>
                         <ol>
-                            <li>Baixe o app na loja</li>
-                            <li>Selecione "Carregar sua playlist"</li>
+                            <li>Baixe o app na Play Store/App Store</li>
+                            <li>Abra o app e aceite os termos</li>
+                            <li>Selecione "Carregar sua playlist ou arquivo"</li>
                             <li>Escolha "Usar URL"</li>
-                            <li>Cole a URL e confirme</li>
+                            <li>Cole a URL e clique em "Adicionar usuário"</li>
+                            <li>Os canais serão carregados automaticamente</li>
                         </ol>
                     </div>
                     <div class="player-card">
-                        <div class="player-icon">💻</div>
+                        <div class="player-icon">🎬</div>
                         <h3>Kodi</h3>
                         <ol>
-                            <li>Instale o addon PVR IPTV Simple Client</li>
-                            <li>Configure com a URL M3U</li>
-                            <li>Ative o addon</li>
+                            <li>Abra o Kodi e vá em "Add-ons"</li>
+                            <li>Procure por "PVR IPTV Simple Client"</li>
+                            <li>Instale o addon</li>
+                            <li>Vá em Configurações → Geral</li>
+                            <li>Em "Localização M3U", selecione "URL"</li>
+                            <li>Cole a URL e clique em OK</li>
+                            <li>Ative o addon e reinicie o Kodi</li>
                         </ol>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-icon">📺</div>
+                        <h3>Smart TV (Samsung/LG)</h3>
+                        <ol>
+                            <li>Baixe o app "Smart IPTV" na loja da TV</li>
+                            <li>Abra o app e anote o MAC Address</li>
+                            <li>Acesse o site do app no celular/PC</li>
+                            <li>Adicione a URL da playlist</li>
+                            <li>Reinicie o app na TV</li>
+                            <li>Os canais serão carregados</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h2>💡 Dicas Importantes</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h3>🔄 Atualização Automática</h3>
+                        <p>A playlist é atualizada automaticamente a cada 6 horas. Você não precisa fazer nada!</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>📡 EPG (Guia de Programação)</h3>
+                        <p>O sistema já inclui múltiplas fontes de EPG para melhor experiência.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>🔒 Segurança</h3>
+                        <p>Nunca compartilhe sua URL com outras pessoas. Cada usuário tem acesso individual.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>⚡ Performance</h3>
+                        <p>Use uma conexão de internet estável (recomendado 10 Mbps ou mais).</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <script>
-        // Verificar autenticação
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'login.html';
-        }
-        
-        // Mostrar nome do usuário
-        const username = localStorage.getItem('username');
-        document.getElementById('userGreeting').textContent = `Olá, ${username}!`;
-        
-        // Construir URLs
-        const baseUrl = window.location.origin;
-        document.getElementById('playlistUrl').value = `${baseUrl}/api/playlist`;
-        document.getElementById('apiUrl').value = `${baseUrl}/api/get.php?username=${username}&password=your_password_here&type=m3u_plus&output=ts`;
-        
-        // Função de cópia
-        function copyToClipboard(elementId) {
-            const input = document.getElementById(elementId);
-            input.select();
-            document.execCommand('copy');
-            
-            const button = document.getElementById(`copy${elementId.charAt(0).toUpperCase() + elementId.slice(1)}Btn`);
-            const originalText = button.textContent;
-            button.textContent = 'Copiado!';
-            setTimeout(() => {
-                button.textContent = originalText;
-            }, 2000);
-        }
-        
-        document.getElementById('copyUrlBtn').addEventListener('click', () => copyToClipboard('playlistUrl'));
-        document.getElementById('copyApiBtn').addEventListener('click', () => copyToClipboard('apiUrl'));
-        
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', async () => {
-            try {
-                await fetch('/api/logout', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-            } catch (error) {
-                console.error('Erro no logout:', error);
-            }
-            
-            localStorage.clear();
-            window.location.href = 'login.html';
-        });
-        
-        // Validar token periodicamente
-        setInterval(async () => {
-            const currentToken = localStorage.getItem('token');
-            if (currentToken) {
-                try {
-                    const response = await fetch('/api/validate', {
-                        headers: {
-                            'Authorization': `Bearer ${currentToken}`
-                        }
-                    });
-                    
-                    if (!response.ok) {
-                        localStorage.clear();
-                        window.location.href = 'login.html';
-                    }
-                } catch (error) {
-                    console.error('Erro na validação:', error);
-                }
-            }
-        }, 60000); // Validar a cada minuto
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 IPTV System - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

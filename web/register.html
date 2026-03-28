@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - IPTV System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">📺</span>
+                <span class="logo-text">IPTV System</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="login.html">Login</a>
+                <a href="register.html" class="active">Cadastro</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Crie sua Conta</h2>
+            <p class="auth-subtitle">Comece a assistir IPTV gratuitamente</p>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" required 
+                           placeholder="Digite seu nome de usuário">
+                    <small class="form-text">Mínimo 3 caracteres</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required 
+                           placeholder="seu@email.com">
+                    <small class="form-text">Usaremos para recuperar sua conta</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Mínimo 6 caracteres">
+                    <small class="form-text">Use letras, números e símbolos</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password">Confirmar Senha</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required 
+                           placeholder="Digite a senha novamente">
+                </div>
+                
+                <div class="form-group terms">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms" required>
+                        <span>Li e aceito os <a href="#" onclick="return false;">Termos de Uso</a> e 
+                        <a href="#" onclick="return false;">Política de Privacidade</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+            </div>
+            
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 IPTV System - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
