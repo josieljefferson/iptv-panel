@@ -5,12 +5,14 @@ services:
     repo: https://github.com/josieljefferson/iptv-panel
     branch: main
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn api.auth:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
+      - key: FLASK_ENV
+        value: production
       - key: SECRET_KEY
         generateValue: true
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn api.auth:app
-    healthCheckPath: /api/status
+    healthCheckPath: /api/health
     autoDeploy: true
