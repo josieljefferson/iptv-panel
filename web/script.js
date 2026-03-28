@@ -1,5 +1,5 @@
 // ============================================
-// IPTV SYSTEM - Script Principal
+// Sistema IPTV - Script Principal
 // ============================================
 
 // Configurações
@@ -468,6 +468,6 @@ if (protectedPages.includes(currentPage)) {
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('IPTV System - Inicializado');
+    console.log('Sistema IPTV - Inicializado');
     checkAPIStatus();
 });
