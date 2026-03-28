@@ -1,1 +1,46 @@
+name: IPTV Auto Update
 
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # A cada 6 horas
+  workflow_dispatch:  # Permite execução manual
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Rodar script de atualização
+      run: |
+        python script_update.py
+    
+    - name: Adicionar timestamp
+      run: |
+        FILE="docs/playlists.m3u"
+        if [ -f "$FILE" ]; then
+          echo -e "\n\n# Atualizado em $(TZ='America/Fortaleza' date '+%d/%m/%Y - %H:%M:%S') BRT" >> "$FILE"
+        fi
+    
+    - name: Commit automático
+      run: |
+        git config --global user.name "iptv-bot"
+        git config --global user.email "bot@iptv.com"
+        git add .
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Atualização automática IPTV - $(date)" && git push)
