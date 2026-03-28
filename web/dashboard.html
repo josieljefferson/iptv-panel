@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - IPTV System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">📺</span>
+                <span class="logo-text">IPTV System</span>
+            </div>
+            <div class="nav-links">
+                <span id="userGreeting" class="user-greeting"></span>
+                <button id="logoutBtn" class="btn-logout">Sair</button>
+            </div>
+        </div>
+    </nav>
 
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Minha Playlist IPTV</h1>
+                <p>Acesse sua lista de canais nos players compatíveis</p>
+            </div>
+
+            <div class="playlist-info">
+                <div class="info-card">
+                    <h3>URL da Playlist</h3>
+                    <div class="url-container">
+                        <input type="text" id="playlistUrl" readonly>
+                        <button id="copyUrlBtn" class="btn-copy">Copiar</button>
+                    </div>
+                    <p class="info-text">Use esta URL no seu player IPTV (VLC, Kodi, Smart TV, etc)</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>API Compatível</h3>
+                    <div class="url-container">
+                        <input type="text" id="apiUrl" readonly>
+                        <button id="copyApiBtn" class="btn-copy">Copiar</button>
+                    </div>
+                    <p class="info-text">Para players que usam o formato antigo de API</p>
+                </div>
+            </div>
+
+            <div class="players-section">
+                <h2>Como Configurar</h2>
+                <div class="players-grid">
+                    <div class="player-card">
+                        <div class="player-icon">📺</div>
+                        <h3>VLC Media Player</h3>
+                        <ol>
+                            <li>Abra o VLC</li>
+                            <li>Clique em "Mídia" → "Abrir URL de Rede"</li>
+                            <li>Cole a URL acima</li>
+                            <li>Clique em "Reproduzir"</li>
+                        </ol>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-icon">📱</div>
+                        <h3>IPTV Smarters Pro</h3>
+                        <ol>
+                            <li>Baixe o app na loja</li>
+                            <li>Selecione "Carregar sua playlist"</li>
+                            <li>Escolha "Usar URL"</li>
+                            <li>Cole a URL e confirme</li>
+                        </ol>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-icon">💻</div>
+                        <h3>Kodi</h3>
+                        <ol>
+                            <li>Instale o addon PVR IPTV Simple Client</li>
+                            <li>Configure com a URL M3U</li>
+                            <li>Ative o addon</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Verificar autenticação
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+        
+        // Mostrar nome do usuário
+        const username = localStorage.getItem('username');
+        document.getElementById('userGreeting').textContent = `Olá, ${username}!`;
+        
+        // Construir URLs
+        const baseUrl = window.location.origin;
+        document.getElementById('playlistUrl').value = `${baseUrl}/api/playlist`;
+        document.getElementById('apiUrl').value = `${baseUrl}/api/get.php?username=${username}&password=your_password_here&type=m3u_plus&output=ts`;
+        
+        // Função de cópia
+        function copyToClipboard(elementId) {
+            const input = document.getElementById(elementId);
+            input.select();
+            document.execCommand('copy');
+            
+            const button = document.getElementById(`copy${elementId.charAt(0).toUpperCase() + elementId.slice(1)}Btn`);
+            const originalText = button.textContent;
+            button.textContent = 'Copiado!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+        
+        document.getElementById('copyUrlBtn').addEventListener('click', () => copyToClipboard('playlistUrl'));
+        document.getElementById('copyApiBtn').addEventListener('click', () => copyToClipboard('apiUrl'));
+        
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await fetch('/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            } catch (error) {
+                console.error('Erro no logout:', error);
+            }
+            
+            localStorage.clear();
+            window.location.href = 'login.html';
+        });
+        
+        // Validar token periodicamente
+        setInterval(async () => {
+            const currentToken = localStorage.getItem('token');
+            if (currentToken) {
+                try {
+                    const response = await fetch('/api/validate', {
+                        headers: {
+                            'Authorization': `Bearer ${currentToken}`
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        localStorage.clear();
+                        window.location.href = 'login.html';
+                    }
+                } catch (error) {
+                    console.error('Erro na validação:', error);
+                }
+            }
+        }, 60000); // Validar a cada minuto
+    </script>
+</body>
+</html>
