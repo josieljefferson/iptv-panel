@@ -2,10 +2,13 @@ import sqlite3
 import hashlib
 import secrets
 from datetime import datetime, timedelta
+import os
 
 class Database:
     def __init__(self):
-        self.conn = sqlite3.connect('iptv.db', check_same_thread=False)
+        # Usar caminho absoluto para o banco de dados
+        db_path = os.path.join(os.path.dirname(__file__), 'iptv.db')
+        self.conn = sqlite3.connect(db_path, check_same_thread=False)
         self.create_tables()
     
     def create_tables(self):
