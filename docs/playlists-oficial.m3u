@@ -1,4 +1,7 @@
-﻿#EXTM3U
+﻿#EXTM3U url-tvg="https://m3u4u.com/epg/jq2zy9epr3bwxmgwyxr5,https://m3u4u.com/epg/3wk1y24kx7uzdevxygz7,https://m3u4u.com/epg/782dyqdrqkh1xegen4zp,https://www.open-epg.com/files/brazil1.xml.gz,https://www.open-epg.com/files/brazil2.xml.gz,https://www.open-epg.com/files/brazil3.xml.gz,https://www.open-epg.com/files/brazil4.xml.gz,https://www.open-epg.com/files/portugal1.xml.gz,https://www.open-epg.com/files/portugal2.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_PT1.xml.gz"
+
+#PLAYLISTV: pltv-logo="https://cdn-icons-png.flaticon.com/256/25/25231.png" pltv-name="IPTV System" pltv-description="Playlist IPTV Automática" pltv-cover="https://images.icon-icons.com/2407/PNG/512/gitlab_icon_146171.png" pltv-author="IPTV System" pltv-site="https://github.com/josieljefferson/iptv-panel" pltv-email="suporte@iptvsystem.com"
+
 #EXTINF:-1 tvg-id="SPORTTV1(src09).pt" tvg-name="Sport Tv 1 4K" tvg-logo="https://wapp-plus.ipcdn4.com/atualizados/SPORT%20TV%201.png" group-title="4K",Sport Tv 1 4K
 http://safecore.sbs/live/8929086/8010003/779621.m3u
 #EXTINF:-1 tvg-id="AnimalPlanet(src05).br" tvg-name="Animal Planet 4K" tvg-logo="https://icons-wapp.ipcdn4.com/Pasta%201/_0000s_0000s_0000s_0066_animal-planet.png" group-title="4K",Animal Planet 4K
